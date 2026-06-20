@@ -46,6 +46,10 @@ export function registerPostTools(server: McpServer, client: WordPressClient) {
         featured_media: z.number().int().optional(),
         sticky: z.boolean().optional(),
         meta: z.record(z.unknown()).optional(),
+        scheduled_date: z
+          .string()
+          .optional()
+          .describe("ISO or parseable date string to schedule publication"),
       },
     },
     async (args) => safeTool(async () => ({ data: await client.post("/posts", args) }))
@@ -67,6 +71,10 @@ export function registerPostTools(server: McpServer, client: WordPressClient) {
         featured_media: z.number().int().optional(),
         sticky: z.boolean().optional(),
         meta: z.record(z.unknown()).optional(),
+        scheduled_date: z
+          .string()
+          .optional()
+          .describe("ISO or parseable date string to schedule publication"),
       },
     },
     async ({ id, ...body }) => safeTool(async () => ({ data: await client.put(`/posts/${id}`, body) }))

@@ -135,6 +135,36 @@ npm run build  # Compile to dist/
 - `wp_elementor_remove_element` — Delete element by ID
 - `wp_elementor_clone_element` — Clone subtree with new IDs
 - `wp_elementor_duplicate_page` — Clone Elementor page as draft
+- `wp_elementor_find_parent` — Find column/container for insert
+- `wp_elementor_regenerate_css` — Regenerate Elementor CSS cache
+
+### v2.0 — Discovery and diagnostics
+- `wp_get_site_blueprint`, `wp_site_audit`, `wp_security_posture`, `wp_purge_cache`
+
+### v2.0 — Gutenberg, CPT, meta
+- `wp_get_block_structure`, `wp_list_blocks`, `wp_update_block`, `wp_insert_block_pattern`
+- `wp_list_post_types`, `wp_list_cpt_items`, `wp_get_cpt_item`, `wp_create_cpt_item`, `wp_update_cpt_item`, `wp_delete_cpt_item`
+- `wp_list_taxonomies`, `wp_list_taxonomy_terms`, `wp_create_taxonomy_term`
+- `wp_get_meta_catalog`, `wp_get_acf_fields`, `wp_update_acf_fields`
+
+### v2.0 — SEO and WooCommerce
+- `wp_get_page_seo`, `wp_update_page_seo`, `wp_audit_seo`
+- `wp_list_products`, `wp_get_product`, `wp_create_product`, `wp_update_product`, `wp_delete_product`, `wp_update_product_price`
+- `wp_list_orders`, `wp_get_order`, `wp_update_order`, `wp_add_order_note`, `wp_refund_order`
+- `wp_list_booking_products`, `wp_get_booking`
+
+### v2.0 — Forms, users, comments, widgets
+- `wp_list_forms`, `wp_get_form`, `wp_update_form_notifications`, `wp_list_form_submissions`
+- `wp_list_users`, `wp_get_user`, `wp_list_roles`, `wp_create_user`
+- `wp_list_comments`, `wp_moderate_comment`, `wp_reply_to_comment`
+- `wp_list_sidebars`, `wp_list_widget_instances`, `wp_update_widget_instance`
+
+### v2.0 — Revisions, plugins, cron
+- `wp_list_revisions`, `wp_get_revision`, `wp_get_revision_diff`, `wp_restore_revision`, `wp_get_snapshot_diff`
+- `wp_get_plugin_conflicts`, `wp_get_plugin_updates`, `wp_activate_plugin`, `wp_deactivate_plugin`
+- `wp_list_cron_events`
+
+**Server version:** 2.0.0 — 100+ tools total
 
 ## Headers Sent to WordPress
 

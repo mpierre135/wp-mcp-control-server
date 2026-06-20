@@ -45,6 +45,10 @@ export function registerPageTools(server: McpServer, client: WordPressClient) {
         template: z.string().optional(),
         featured_media: z.number().int().optional(),
         meta: z.record(z.unknown()).optional(),
+        scheduled_date: z
+          .string()
+          .optional()
+          .describe("ISO or parseable date string to schedule publication"),
       },
     },
     async (args) => safeTool(async () => ({ data: await client.post("/pages", args) }))
@@ -65,6 +69,10 @@ export function registerPageTools(server: McpServer, client: WordPressClient) {
         template: z.string().optional(),
         featured_media: z.number().int().optional(),
         meta: z.record(z.unknown()).optional(),
+        scheduled_date: z
+          .string()
+          .optional()
+          .describe("ISO or parseable date string to schedule publication"),
       },
     },
     async ({ id, ...body }) => safeTool(async () => ({ data: await client.put(`/pages/${id}`, body) }))

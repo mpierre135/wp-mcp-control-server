@@ -288,4 +288,31 @@ export function registerElementorTools(server: McpServer, client: WordPressClien
         }),
       }))
   );
+
+  server.registerTool(
+    "wp_elementor_find_parent",
+    {
+      description:
+        "Find a suitable parent column or container element ID for inserting widgets on an Elementor page",
+      inputSchema: {
+        page_id: z.number().int().describe("WordPress page ID"),
+      },
+    },
+    async ({ page_id }) =>
+      safeTool(async () => ({ data: await client.get(`/elementor/pages/${page_id}/parent`) }))
+  );
+
+  server.registerTool(
+    "wp_elementor_regenerate_css",
+    {
+      description: "Regenerate Elementor CSS assets for a page after structural changes",
+      inputSchema: {
+        page_id: z.number().int().describe("WordPress page ID"),
+      },
+    },
+    async ({ page_id }) =>
+      safeTool(async () => ({
+        data: await client.post(`/elementor/pages/${page_id}/regenerate`, {}),
+      }))
+  );
 }
