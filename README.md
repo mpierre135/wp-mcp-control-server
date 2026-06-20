@@ -2,6 +2,8 @@
 
 TypeScript MCP server that connects Cursor, Claude Desktop, and other MCP clients to the [WP MCP Control](https://github.com/mpierre135/wp-mcp-control) WordPress plugin.
 
+**Current version:** 2.0.0 (100+ tools)
+
 ## Quick Install (new computer)
 
 ```bash
