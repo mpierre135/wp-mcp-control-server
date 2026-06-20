@@ -2,7 +2,7 @@
 
 TypeScript MCP server that connects Cursor, Claude Desktop, and other MCP clients to the [WP MCP Control](https://github.com/mpierre135/wp-mcp-control) WordPress plugin.
 
-**Current version:** 2.1.0 (115+ tools)
+**Current version:** 2.2.0 (119+ tools)
 
 ## Quick Install (new computer)
 
@@ -171,7 +171,7 @@ npm run build  # Compile to dist/
 - `wp_list_woocommerce_webhooks`, `wp_create_woocommerce_webhook`, `wp_delete_woocommerce_webhook`
 - `wp_list_form_webhooks`, `wp_create_form_webhook`, `wp_update_form_webhook`, `wp_delete_form_webhook`
 
-**Server version:** 2.1.0 — 115+ tools total
+**Server version:** 2.2.0 — 119+ tools total
 
 ## Headers Sent to WordPress
 

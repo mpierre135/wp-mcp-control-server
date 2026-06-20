@@ -35,7 +35,7 @@ const client = new WordPressClient(config);
 
 const server = new McpServer({
   name: "wp-mcp-control",
-  version: "2.1.0",
+  version: "2.2.0",
 });
 
 registerSiteTools(server, client);

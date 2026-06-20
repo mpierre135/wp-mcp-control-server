@@ -268,7 +268,7 @@ export function registerElementorTools(server: McpServer, client: WordPressClien
     "wp_elementor_duplicate_page",
     {
       description:
-        "Duplicate an Elementor page as a new draft with remapped element IDs. confirm:true required when safe mode is on.",
+        "Duplicate an Elementor page as a new draft with remapped element IDs. Preserves heading text through safe JSON pipeline. confirm:true required when safe mode is on.",
       inputSchema: {
         source_id: z.number().int().describe("Source page ID to clone"),
         title: z.string().optional(),
@@ -286,6 +286,65 @@ export function registerElementorTools(server: McpServer, client: WordPressClien
           status,
           confirm,
         }),
+      }))
+  );
+
+  server.registerTool(
+    "wp_elementor_create_blank_page",
+    {
+      description:
+        "Create a new Elementor page with an empty canvas and header/footer template (elementor_header_footer by default). confirm:true required when safe mode is on.",
+      inputSchema: {
+        title: z.string().describe("Page title"),
+        slug: z.string().optional(),
+        status: z.enum(["draft", "publish", "pending", "private"]).default("draft"),
+        template: z
+          .string()
+          .default("elementor_header_footer")
+          .describe("WordPress page template slug"),
+        confirm: z.boolean().optional(),
+      },
+    },
+    async ({ title, slug, status, template, confirm }) =>
+      safeTool(async () => ({
+        data: await client.post("/elementor/pages/create-blank", {
+          title,
+          slug,
+          status,
+          template,
+          confirm,
+        }),
+      }))
+  );
+
+  server.registerTool(
+    "wp_elementor_clear_page",
+    {
+      description:
+        "Remove all Elementor canvas sections/containers from a page for rebuilds. Theme builder header/footer templates are unaffected. confirm:true required when safe mode is on.",
+      inputSchema: {
+        page_id: z.number().int(),
+        confirm: z.boolean().optional(),
+      },
+    },
+    async ({ page_id, confirm }) =>
+      safeTool(async () => ({
+        data: await client.post(`/elementor/pages/${page_id}/clear`, { confirm }),
+      }))
+  );
+
+  server.registerTool(
+    "wp_elementor_repair_json",
+    {
+      description:
+        "Re-save Elementor JSON on a page to fix corruption (e.g. $400n heading text). Use after duplicate issues or broken templates.",
+      inputSchema: {
+        page_id: z.number().int(),
+      },
+    },
+    async ({ page_id }) =>
+      safeTool(async () => ({
+        data: await client.post(`/elementor/pages/${page_id}/repair-json`, {}),
       }))
   );
 
