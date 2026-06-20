@@ -28,13 +28,14 @@ import { registerWidgetTools } from "./tools/widgets.js";
 import { registerRevisionTools } from "./tools/revisions.js";
 import { registerPluginTools } from "./tools/plugins.js";
 import { registerCronTools } from "./tools/cron.js";
+import { registerWebhookTools } from "./tools/webhooks.js";
 
 const config = getConfig();
 const client = new WordPressClient(config);
 
 const server = new McpServer({
   name: "wp-mcp-control",
-  version: "2.0.0",
+  version: "2.1.0",
 });
 
 registerSiteTools(server, client);
@@ -62,6 +63,7 @@ registerWidgetTools(server, client);
 registerRevisionTools(server, client);
 registerPluginTools(server, client);
 registerCronTools(server, client);
+registerWebhookTools(server, client);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
